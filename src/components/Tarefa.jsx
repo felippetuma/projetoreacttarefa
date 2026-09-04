@@ -41,9 +41,9 @@ const Tarefas = () => {
     return (
         <>
             <div className="max-w-md mx-auto p-6 bg-amber-300 rounded-3xl border border-blue-700">
-                <h2>Minha Lista de Tarefas</h2>
+                <h2 class="text-2xl font-bold p-4 text-center">Minha Lista de Tarefas</h2>
                 {/* chama afunção AdicionarTarefa */}
-                <form onSubmit={adicionarTarefa} className="todo-form" cl>
+                <form class="text-center justify-center" onSubmit={adicionarTarefa} className="todo-form" cl>
                     <input
                         type="text"
                         value={campo}
@@ -51,12 +51,12 @@ const Tarefas = () => {
                         placeholder="Digite uma nova tarefa..."
                         className="todo-input"
                     />
-                    <button class="border p-6 rounded-4xl" type="submit" className="btn-adicionar">
+                    <button class="border font-medium p-2 rounded-lg hover:text-white hover:scale-95" type="submit" className="btn-adicionar">
                         Adicionar
                     </button>
                 </form>
 
-                <ul className="todo-lista">
+                <ul className="todo-lista" class= "p-3">
                     {tarefas.map((tarefa) => (
                         <li key={tarefa.id} className="todo-item">
                             <span>{tarefa.text}</span>
@@ -66,6 +66,7 @@ const Tarefas = () => {
             */}
                             <button onClick={() => removerTarefa(tarefa.id)}
                                 className="btn-delete"
+                                class="p-4 hover:text-white "
                             >
                                 Excluir
                             </button>
