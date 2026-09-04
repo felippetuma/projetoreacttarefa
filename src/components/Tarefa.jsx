@@ -1,48 +1,49 @@
-import { useState, useEffect} from 'react'
-import "../stilo.css"
+import { useState, useEffect } from "react"
+import '../estilo.css'
 
-const Tarefa = () => {
+const Tarefas = () => {
 
-    // Hook - useState Manipula o estado da variável
-    const [tarefas,setTarefas] = useState(() => {
-        const salvarTarefas = localStorage.getItem("item-tarefas")
-        return salvarTarefas ? JSON.parse(salvarTarefas): [];
-    })
-    // ternario codigo limpo resolver o que conseguir em uma linha para deixar o codigo limpo
+    //HOOK- useState-Manipula o estado da variável
+    const [tarefas, setTarefas] = useState(() => {
+        const salvarTarefas = localStorage.getItem("item-tarefa");
+        return salvarTarefas ? JSON.parse(salvarTarefas) : [];
+    });
     const [campo, setCampo] = useState("");
 
-
-    //Hook - useEffect - Realiza um efeito colateral, nese caso atualiza em tempo real
+    //HOOK- useEffect -Realiza um efeito colateral ,nessa
+    //caso atualiza a tarefa em tempo real.
     useEffect(() => {
-        localStorage.setItem("item-tarefa", JSON.stringify(tarefas));
-    },[tarefas])
+        localStorage.setItem("item-tarefa", JSON.stringify(tarefas))
+    }, [tarefas])
 
-    // função adicionar tarefa
+    //Função Adicionar Tarefa
 
-    const adicionarTarefa = (e)=> {
-        // Previne da página fazer recarregamento
+    const adicionarTarefa = (e) => {
+        //previne a página fazer recarregamento
         e.preventDefault();
-        if(!campo.trim()) return;
-        // trim remove o campo vazio
+        if (!campo.trim()) return;
+
+        // objeto
         const novaTarefa = {
             id: Date.now(),
             text: campo,
         };
-        setTarefas([...tarefas,novaTarefa]);
+        setTarefas([...tarefas, novaTarefa]); // ... -> spred
         setCampo();
-
     }
 
     const removerTarefa = (id) => {
         const apagarTarefa = tarefas.filter((tarefa) => tarefa.id !== id);
         setTarefas(apagarTarefa);
     };
+    /* max-w-md mx-auto reatividade*/
+    // rounded funciona com marcação de roupa
     return (
-    <>
-            <div className="todo-container">
+        <>
+            <div className="max-w-md mx-auto p-6 bg-amber-300 rounded-3xl border border-blue-700">
                 <h2>Minha Lista de Tarefas</h2>
                 {/* chama afunção AdicionarTarefa */}
-                <form onSubmit={adicionarTarefa} className="todo-form">
+                <form onSubmit={adicionarTarefa} className="todo-form" cl>
                     <input
                         type="text"
                         value={campo}
@@ -50,7 +51,7 @@ const Tarefa = () => {
                         placeholder="Digite uma nova tarefa..."
                         className="todo-input"
                     />
-                    <button type="submit" className="btn-adicionar">
+                    <button class="border p-6 rounded-4xl" type="submit" className="btn-adicionar">
                         Adicionar
                     </button>
                 </form>
@@ -74,8 +75,8 @@ const Tarefa = () => {
                 {/* compara se nao tiver mensagems deixa  Nenhuma tarefa salva */}
                 {tarefas.length === 0 && <p className="mensagem">Nenhuma tarefa salva.</p>}
             </div>
-            </>
+        </>
     )
 }
 
-export default Tarefa
+export default Tarefas
