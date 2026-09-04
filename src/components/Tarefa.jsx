@@ -36,12 +36,14 @@ const Tarefas = () => {
         const apagarTarefa = tarefas.filter((tarefa) => tarefa.id !== id);
         setTarefas(apagarTarefa);
     };
+    /* max-w-md mx-auto reatividade*/
+    // rounded funciona com marcação de roupa
     return (
         <>
-            <div className="todo-container">
+            <div className="max-w-md mx-auto p-6 bg-amber-300 rounded-3xl border border-blue-700">
                 <h2>Minha Lista de Tarefas</h2>
                 {/* chama afunção AdicionarTarefa */}
-                <form onSubmit={adicionarTarefa} className="todo-form">
+                <form onSubmit={adicionarTarefa} className="todo-form" cl>
                     <input
                         type="text"
                         value={campo}
@@ -49,7 +51,7 @@ const Tarefas = () => {
                         placeholder="Digite uma nova tarefa..."
                         className="todo-input"
                     />
-                    <button type="submit" className="btn-adicionar">
+                    <button class="border p-6 rounded-4xl" type="submit" className="btn-adicionar">
                         Adicionar
                     </button>
                 </form>
