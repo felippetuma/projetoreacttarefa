@@ -1,36 +1,35 @@
-import { useState, useEffect} from 'react'
-import "../stilo.css"
+import { useState, useEffect } from "react"
+import '../estilo.css'
 
-const Tarefa = () => {
+const Tarefas = () => {
 
-    // Hook - useState Manipula o estado da variável
-    const [tarefas,setTarefas] = useState(() => {
-        const salvarTarefas = localStorage.getItem("item-tarefas")
-        return salvarTarefas ? JSON.parse(salvarTarefas): [];
-    })
-    // ternario codigo limpo resolver o que conseguir em uma linha para deixar o codigo limpo
+    //HOOK- useState-Manipula o estado da variável
+    const [tarefas, setTarefas] = useState(() => {
+        const salvarTarefas = localStorage.getItem("item-tarefa");
+        return salvarTarefas ? JSON.parse(salvarTarefas) : [];
+    });
     const [campo, setCampo] = useState("");
 
-
-    //Hook - useEffect - Realiza um efeito colateral, nese caso atualiza em tempo real
+    //HOOK- useEffect -Realiza um efeito colateral ,nessa
+    //caso atualiza a tarefa em tempo real.
     useEffect(() => {
-        localStorage.setItem("item-tarefa", JSON.stringify(tarefas));
-    },[tarefas])
+        localStorage.setItem("item-tarefa", JSON.stringify(tarefas))
+    }, [tarefas])
 
-    // função adicionar tarefa
+    //Função Adicionar Tarefa
 
-    const adicionarTarefa = (e)=> {
-        // Previne da página fazer recarregamento
+    const adicionarTarefa = (e) => {
+        //previne a página fazer recarregamento
         e.preventDefault();
-        if(!campo.trim()) return;
-        // trim remove o campo vazio
+        if (!campo.trim()) return;
+
+        // objeto
         const novaTarefa = {
             id: Date.now(),
             text: campo,
         };
-        setTarefas([...tarefas,novaTarefa]);
+        setTarefas([...tarefas, novaTarefa]); // ... -> spred
         setCampo();
-
     }
 
     const removerTarefa = (id) => {
@@ -38,7 +37,7 @@ const Tarefa = () => {
         setTarefas(apagarTarefa);
     };
     return (
-    <>
+        <>
             <div className="todo-container">
                 <h2>Minha Lista de Tarefas</h2>
                 {/* chama afunção AdicionarTarefa */}
@@ -74,8 +73,8 @@ const Tarefa = () => {
                 {/* compara se nao tiver mensagems deixa  Nenhuma tarefa salva */}
                 {tarefas.length === 0 && <p className="mensagem">Nenhuma tarefa salva.</p>}
             </div>
-            </>
+        </>
     )
 }
 
-export default Tarefa
+export default Tarefas

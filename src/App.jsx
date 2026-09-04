@@ -3,7 +3,7 @@ import Tarefa from "./components/Tarefa"
 const App = () => {
   return (
     <>
-      <Tarefa/>
+      <Tarefa />
     </>
   )
 }
